@@ -1,0 +1,19 @@
+{% extends "html/layout.html" %}
+{% block body %}
+  {% if error %}
+    <p>{{ error }}</p>
+  {% endif %}
+  <div class="form-contianer">
+      <h2 class="form-header">Login</h2>
+      <form action="{{ url_for('login') }}" method="post">
+      <dl>
+        <dt class="form-question">Username:
+        <dd class="form-field"><input type="text" name="username">
+        <dt class="form-question">Password:
+        <dd class="form-field"><input type="password" name="password">
+        <dd class="form-submit"><input type="submit" value="Login">
+      </dl>
+    </form>
+  </div>
+  <p> New User? <a href="{{ url_for('register')}}">Register!</a>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends "html/layout.html" %}
+
+{% block body %}
+  <div>
+    {% for board in user.boards %}
+        <div><p>
+          {{board.name}}
+        </p><div>
+    {% endfor %}
+  </div>
+{% endblock %}

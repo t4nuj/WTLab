@@ -1,0 +1,17 @@
+{% extends "html/layout.html" %}
+{% block body %}
+
+  <div class="form-contianer">
+      <h2 class="form-header">Register</h2>
+      <form action="{{ url_for('register') }}" method="post">
+      <dl>
+        <dt class="form-question">Username:
+        <dd class="form-field"><input type="text" name="username">
+        <dt class="form-question">Password:
+        <dd class="form-field"><input type="password" name="password">
+        <dd class="form-submit"><input type="submit" value="Register">
+      </dl>
+    </form>
+  </div>
+
+{% endblock %}

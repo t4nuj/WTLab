@@ -1,0 +1,26 @@
+<!doctype html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>PinBoard</title>
+
+  {% block stylesheets %}{% endblock %}
+
+  <script src="{{url_for('static',filename='js/underscore.js')}}"></script>
+  <script src="{{url_for('static',filename='js/jquery-1.11.3.js')}}"></script>
+  <script src="{{url_for('static',filename='js/backbone.js')}}" /></script>
+  {% block scripts %}{% endblock %}
+</head>
+
+<body>
+  <div class="navbar">
+    {% if session.logged_in %}
+    <div class="username"><h2>{{session.username}}</h2></div>
+    <div class="button logout"><a href="{{url_for('logout')}}">logout</a></div> {% endif %}
+  </div>
+
+  {% block body %}{% endblock %}
+</body>
