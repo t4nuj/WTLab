@@ -6,21 +6,36 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>PinBoard</title>
-
+  <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.css')}}">
+  <link rel="stylesheet" href="{{url_for('static',filename='css/navbar.css')}}">
   {% block stylesheets %}{% endblock %}
 
   <script src="{{url_for('static',filename='js/underscore.js')}}"></script>
   <script src="{{url_for('static',filename='js/jquery-1.11.3.js')}}"></script>
   <script src="{{url_for('static',filename='js/backbone.js')}}" /></script>
+  <script src="{{url_for('static',filename='js/bootstrap.js')}}" /></script>
   {% block scripts %}{% endblock %}
 </head>
 
 <body>
-  <div class="navbar">
-    {% if session.logged_in %}
-    <div class="username"><h2>{{session.username}}</h2></div>
-    <div class="button logout"><a href="{{url_for('logout')}}">logout</a></div> {% endif %}
+  <nav class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">
+        <h5>PinBoard</h5>
+      </a>
+    </div>
+  {% if session.logged_in %}
+    <div>
+      <p class="navbar-text">
+        {{ session.username }}
+      </p>
+      <button class="btn btn-primary navbar-btn navbar-right" onclick="{{url_for('logout')}}">Logout</button>
+    </div>
+  {% endif %}
   </div>
+</nav>
 
   {% block body %}{% endblock %}
 </body>
+</html>

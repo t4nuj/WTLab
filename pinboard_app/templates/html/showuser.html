@@ -1,10 +1,10 @@
 {% extends "html/layout.html" %}
 
 {% block body %}
-  <div>
+  <div class="board-list">
     {% for board in user.boards %}
         <div><p>
-          {{board.name}}
+          <a href="{{url_for('show_board',id=board.id)}}"> {{board.name}} </a>
         </p><div>
     {% endfor %}
   </div>

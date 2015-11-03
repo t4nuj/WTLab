@@ -4,7 +4,7 @@ from pinboard_app.models import User, Board, List
 from decorators import logged_in
 
 
-@app.route('/list/', methods=['GET'])
+@app.route('/api/list/', methods=['GET'])
 @logged_in
 def get_lists():
     try:
@@ -22,7 +22,7 @@ def get_lists():
         return jsonify({'Error': 'Incorect form of request'}), 400
 
 
-@app.route('/list/', methods=['POST'])
+@app.route('/api/list/', methods=['POST'])
 @logged_in
 def post_list():
     try:
@@ -46,7 +46,7 @@ def post_list():
         return jsonify({'Error': 'Incorect form of request'}), 400
 
 
-@app.route('/list/<int:id>/', methods=['GET'])
+@app.route('/api/list/<int:id>/', methods=['GET'])
 @logged_in
 def get_list(id):
     list = List.query.get_or_404(id)
@@ -58,7 +58,7 @@ def get_list(id):
     return jsonify(list_json.data)
 
 
-@app.route('/list/<int:id>/', methods=['PUT'])
+@app.route('/api/list/<int:id>/', methods=['PUT'])
 @logged_in
 def put_list(id):
     list = List.query.get_or_404(id)

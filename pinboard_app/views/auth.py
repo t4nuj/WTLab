@@ -82,4 +82,5 @@ def logout():
 @app.route('/<username>/')
 @logged_in
 def show_user(username):
+    user = User.query.filter_by(username=username).first()
     return render_template('html/showuser.html', user=user)

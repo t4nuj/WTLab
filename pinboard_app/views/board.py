@@ -1,4 +1,4 @@
-from flask import jsonify, request, session, abort
+from flask import jsonify, request, session, abort, render_template
 from pinboard_app import app, db, board_schema, boards_schema, user_schema
 from pinboard_app.models import Board, User
 from decorators import logged_in
@@ -9,8 +9,17 @@ def teardown_request(exception):
     if exception is None:
         db.session.commit()
 
+@app.route('/board/<int:id>', methods=['GET'])
+@logged_in
+def show_board(id):
+    board = Board.query.get(id)
+    print session['user_id']
+    if session['user_id'] not in [user.id for user in board.users]:
+         abort(403)
 
-@app.route('/board/', methods=['GET'])
+    return render_template('html/showboard.html',board=board)
+
+@app.route('/api/board/', methods=['GET'])
 @logged_in
 def get_boards():
     user = User.query.get(session['user_id'])
@@ -19,7 +28,7 @@ def get_boards():
     return jsonify({"boards": boards_json.data})
 
 
-@app.route('/board/', methods=['POST'])
+@app.route('/api/board/', methods=['POST'])
 @logged_in
 def post_board():
     data = request.get_json()
@@ -32,7 +41,7 @@ def post_board():
         return jsonify({'Error': "Incorrect form of Data"}), 400
 
 
-@app.route('/board/<int:id>/', methods=['GET'])
+@app.route('/api/board/<int:id>/', methods=['GET'])
 @logged_in
 def get_board(id):
     board = Board.query.get_or_404(id)
@@ -45,7 +54,7 @@ def get_board(id):
     return jsonify(board_result.data)
 
 
-@app.route('/board/<int:id>/', methods=['PUT'])
+@app.route('/api/board/<int:id>/', methods=['PUT'])
 @logged_in
 def put_board(id):
     if id in [board.id for board in User.query.get(session['user_id']).boards]:

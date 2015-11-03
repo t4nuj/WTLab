@@ -1,0 +1,23 @@
+body {
+   background-color: #eee;
+   padding-left: 20%;
+   padding-right: 20%;
+}
+.form-container {
+
+  height: 40%;
+  /*border: 1px solid black;*/
+  padding: 30px;
+  /*margin: auto;*/
+  background-color: #fff;
+  -webkit-border-radius: 10px 10px 10px 10px;
+  -moz-border-radius: 10px 10px 10px 10px;
+  border-radius: 10px 10px 10px 10px;
+  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+  -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+  box-shadow: 0 1px 2px rgba(0,0,0,.15);
+}
+
+#submit-button {
+  margin: auto;
+}

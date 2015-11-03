@@ -4,7 +4,7 @@ from pinboard_app.models import User, List, Card
 from decorators import logged_in
 
 
-@app.route('/card/', methods=['GET'])
+@app.route('/api/card/', methods=['GET'])
 @logged_in
 def get_cards():
     try:
@@ -22,7 +22,7 @@ def get_cards():
         return jsonify({'Error': 'Incorect form of request'}), 400
 
 
-@app.route('/card/', methods=['POST'])
+@app.route('/api/card/', methods=['POST'])
 @logged_in
 def post_card():
     try:
@@ -54,7 +54,7 @@ def post_card():
         return jsonify({'Error': 'Incorect form of request'}), 400
 
 
-@app.route('/card/<int:id>/', methods=['GET'])
+@app.route('/api/card/<int:id>/', methods=['GET'])
 @logged_in
 def get_card(id):
     card = Card.query.get_or_404(id)
@@ -68,7 +68,7 @@ def get_card(id):
     return jsonify(card_json.data)
 
 
-@app.route('/card/<int:id>/', methods=['PUT'])
+@app.route('/api/card/<int:id>/', methods=['PUT'])
 @logged_in
 def put_card(id):
     card = Card.query.get_or_404(id)
